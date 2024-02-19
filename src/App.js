@@ -1,5 +1,6 @@
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
+import Socials from "./components/Socials";
 
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div>
      <NavBar/>
      <Home/>
+     <Socials/>
     </div>
   );
 }
