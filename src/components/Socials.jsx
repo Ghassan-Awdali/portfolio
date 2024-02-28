@@ -15,7 +15,7 @@ const Socials = () => {
         (<> 
         LinkedIn <FaLinkedin size={30}/>
         </>),
-        href: 'https://linkedin.com',
+        href: 'https://linkedin.com/in/ghassan-awdali',
         style: 'rounded-tr-md'
     
     },
@@ -26,7 +26,7 @@ const Socials = () => {
         (<> 
         GitHub <FaGithub size={30}/> 
         </>),
-        href: 'https://github.com',
+        href: 'https://github.com/ghassan-awdali',
         
    
     },
