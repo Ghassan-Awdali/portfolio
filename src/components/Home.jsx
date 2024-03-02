@@ -1,5 +1,4 @@
 import React from 'react'
-import HeroImage from "../assets/portfolio picture.webp"
 import { TbArrowRightSquare } from "react-icons/tb";
 
 const Home = () => {
