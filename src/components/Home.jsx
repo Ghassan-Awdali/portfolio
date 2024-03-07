@@ -4,10 +4,10 @@ import { Link } from "react-scroll";
 
 const Home = () => {
   return (
-    <div name ='home' className='h-screen w-full bg-gradient-to-b from-black via-black to-gray-800 text-white'>
+    <div name ='home' className='h-screen w-full bg-gradient-to-b from-black via-black to-gray-800 text-white flex sm:pt-8'>
         <div className='max-w-screen-lg mx-auto flex flex-col items-center justify-center h-full px-4 md:flex-row'>
             <div className='flex flex-col justify-center h-full'>
-                <h2 className="text-7xl sm:text-5xl font-bold text-white">I am a 22 years old Software Engineer </h2>
+                <h2 className="text-7xl sm:text-5xl font-bold text-white">I am a 22 year old Software Engineer </h2>
 
                 <p className='text-gray-500 py-4 max-w-2xl'>
                         I approach learning with genuine enthusiasm and a sincere desire to grow. Passionate about technology,
