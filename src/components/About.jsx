@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const About = () => {
   return (
@@ -14,27 +14,24 @@ const About = () => {
         </div>
 
         <p className="text-xl mt-20">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius,
-          deserunt illum mollitia officiis qui exercitationem perferendis neque
-          quasi a recusandae necessitatibus tempora iusto! Blanditiis error
-          iste, totam fugiat recusandae rerum laborum perferendis molestiae
-          aperiam asperiores nemo. Magni dolor maxime debitis vitae, eaque hic
-          ab mollitia voluptatibus, a nostrum eveniet laborum!
+          I’m a passionate software engineer who recently graduated in May 2024
+          from Dalhousie. Though I wasn't always able to focus on my career, I'm
+          now committed to making my mark in the industry. I’m eager to grow,
+          driven by intellectual curiosity and a desire to become highly
+          capable.
         </p>
 
         <br />
 
         <p className="text-xl">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum
-          pariatur, vel similique sint, nobis aspernatur ut praesentium
-          explicabo ipsam aliquid quasi laboriosam et culpa possimus repudiandae
-          quisquam ullam maiores ab unde. Fugiat odio mollitia nemo alias.
-          Commodi facilis atque nulla vero voluptatem explicabo. Quibusdam,
-          magni quo! Eum cupiditate debitis labore.
+          Stagnant in the past, I now try my best to embrace every opportunity
+          to learn and evolve. My goal is to keep pushing myself until I achieve
+          excellence. I'm an aspiring software engineer, determined to become
+          someone who stands out.
         </p>
       </div>
     </div>
   );
 };
 
-export default About
+export default About;
