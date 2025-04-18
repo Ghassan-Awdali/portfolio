@@ -22,7 +22,7 @@ const Projects = () => {
       src: mazePic,
       title: "Haskell Maze Generator & Solver",
       description:
-        "A maze generation and solving algorithm implemented in Haskell using binary files. This project demonstrates functional programming concepts and pathfinding algorithms, creating and solving complex mazes.",
+        "A binary maze solving algorithm implemented in Haskell. This project demonstrates functional programming concepts and pathfinding algorithms, creating and solving complex mazes.",
       tech: "Haskell, Algorithms, Functional Programming",
       demo: null,
       code: "https://github.com/Ghassan-Awdali/Haskell-Maze",
@@ -41,9 +41,9 @@ const Projects = () => {
   return (
     <div
       name="projects"
-      className={`flex w-full text-white md:h-screen sm:pt-8 ${
+      className={`flex w-full md:h-screen sm:pt-8 ${
         isDarkMode
-          ? "bg-gradient-to-b from-black to-gray-800"
+          ? "bg-gradient-to-b from-black to-gray-800 text-white"
           : "bg-gradient-to-b from-white to-gray-200 text-gray-900"
       }`}
     >
@@ -51,12 +51,16 @@ const Projects = () => {
         <div className="pb-8">
           <p
             className={`text-4xl font-bold inline border-b-4 ${
-              isDarkMode ? "border-gray-500" : "border-gray-600"
+              isDarkMode
+                ? "border-gray-500 text-white"
+                : "border-gray-600 text-gray-900"
             }`}
           >
             Projects
           </p>
-          <p className="py-6">Check out some of my work</p>
+          <p className={`py-6 ${isDarkMode ? "text-white" : "text-gray-900"}`}>
+            Check out some of my work
+          </p>
         </div>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 px-12 sm:px-0">
@@ -76,7 +80,13 @@ const Projects = () => {
                   />
                 </div>
                 <div className="p-4">
-                  <h3 className="text-xl font-bold mb-2">{title}</h3>
+                  <h3
+                    className={`text-xl font-bold mb-2 ${
+                      isDarkMode ? "text-white" : "text-gray-900"
+                    }`}
+                  >
+                    {title}
+                  </h3>
                   <p
                     className={`text-sm mb-3 ${
                       isDarkMode ? "text-gray-300" : "text-gray-600"
