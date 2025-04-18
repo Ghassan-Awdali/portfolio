@@ -4,7 +4,7 @@ const About = () => {
   return (
     <div
       name="about"
-      className="flex w-full h-screen bg-gradient-to-b from-gray-800 to-black text-white sm:pt-8"
+      className="flex w-full min-h-screen bg-gradient-to-b from-gray-800 to-black text-white pt-20 md:pt-0"
     >
       <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full">
         <div className="pb-8">
@@ -13,21 +13,20 @@ const About = () => {
           </p>
         </div>
 
-        <p className="text-xl mt-20">
-          I’m a passionate software engineer who recently graduated in May 2024
-          from Dalhousie. Though I wasn't always able to focus on my career, I'm
-          now committed to making my mark in the industry. I’m eager to grow,
-          driven by intellectual curiosity and a desire to become highly
-          capable.
+        <p className="text-xl mt-10 md:mt-20">
+          As a 24-year-old software engineer, I'm driven by the desire to be
+          both an innovator and educator in the tech industry. I believe in
+          creating solutions that not only solve problems but also inspire and
+          teach others.
         </p>
 
         <br />
 
         <p className="text-xl">
-          Stagnant in the past, I now try my best to embrace every opportunity
-          to learn and evolve. My goal is to keep pushing myself until I achieve
-          excellence. I'm an aspiring software engineer, determined to become
-          someone who stands out.
+          My goal is to contribute meaningfully to the tech community by
+          developing innovative solutions while sharing knowledge and
+          experiences with others. I'm passionate about creating technology that
+          makes a difference and helping others learn and grow in their journey.
         </p>
       </div>
     </div>
