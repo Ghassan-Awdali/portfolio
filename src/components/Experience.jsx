@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "../context/ThemeContext";
 import html from "../assets/html.png";
 import python from "../assets/python.png";
 import css from "../assets/css.png";
@@ -14,6 +15,7 @@ import csharp from "../assets/csharp.png";
 import github from "../assets/github.png";
 
 const Experience = () => {
+  const { isDarkMode } = useTheme();
   const techs = [
     {
       id: 1,
@@ -92,21 +94,31 @@ const Experience = () => {
   return (
     <div
       name="experience"
-      className="flex bg-gradient-to-b from-gray-800 to-black w-full min-h-screen pt-20 md:pt-0"
+      className={`flex w-full min-h-screen pt-20 md:pt-0 ${
+        isDarkMode
+          ? "bg-gradient-to-b from-gray-800 to-black text-white"
+          : "bg-gradient-to-b from-gray-200 to-white text-gray-900"
+      }`}
     >
-      <div className="max-w-screen-lg sm:p-0 mx-auto p-4 flex flex-col justify-center w-full h-full text-white mb-8">
+      <div className="max-w-screen-lg sm:p-0 mx-auto p-4 flex flex-col justify-center w-full h-full mb-8">
         <div>
-          <p className=" text-4xl font-bold border-b-4 border-gray-500 p-2 inline">
+          <p
+            className={`text-4xl font-bold border-b-4 p-2 inline ${
+              isDarkMode ? "border-gray-500" : "border-gray-600"
+            }`}
+          >
             Experience
           </p>
-          <p className=" py-6">These are the technologies I've worked with</p>
+          <p className="py-6">These are the technologies I've worked with</p>
         </div>
 
         <div className="w-full grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8 text-center py-8 px-4 sm:px-0">
           {techs.map(({ id, src, title, style }) => (
             <div
               key={id}
-              className={`shadow-md hover:scale-105 duration-500 py-2 rounded-lg ${style}`}
+              className={`shadow-md hover:scale-105 duration-500 py-2 rounded-lg ${style} ${
+                isDarkMode ? "bg-transparent" : "bg-white"
+              }`}
             >
               <img src={src} alt="" className="w-20 mx-auto" />
               <p className="mt-3">{title}</p>

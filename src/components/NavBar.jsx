@@ -44,27 +44,29 @@ const NavBar = () => {
         </h1>
       </div>
 
-      <button
-        onClick={toggleTheme}
-        className="p-2 rounded-full hover:bg-opacity-20 hover:bg-gray-500 transition-all duration-300"
-      >
-        {isDarkMode ? <FaSun size={24} /> : <FaMoon size={24} />}
-      </button>
-
-      <ul className="hidden md:flex">
-        {links.map(({ id, link }) => (
-          <li
-            key={id}
-            className="px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-125
+      <div className="hidden md:flex items-center">
+        <ul className="flex">
+          {links.map(({ id, link }) => (
+            <li
+              key={id}
+              className="px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-125
                   duration-200"
-          >
-            {" "}
-            <Link to={link} smooth duration={500}>
-              {link}
-            </Link>{" "}
-          </li>
-        ))}
-      </ul>
+            >
+              {" "}
+              <Link to={link} smooth duration={500}>
+                {link}
+              </Link>{" "}
+            </li>
+          ))}
+        </ul>
+
+        <button
+          onClick={toggleTheme}
+          className="ml-4 p-2 rounded-full hover:bg-opacity-20 hover:bg-gray-500 transition-all duration-300"
+        >
+          {isDarkMode ? <FaSun size={24} /> : <FaMoon size={24} />}
+        </button>
+      </div>
 
       <div
         onClick={() => setNav(!nav)}
