@@ -1,6 +1,7 @@
 import React from "react";
 import { useTheme } from "../context/ThemeContext";
 import mazePic from "../assets/maze.png";
+import indiebuffPic from "../assets/indiebuff.png";
 import tbd from "../assets/tbd.png";
 
 const Projects = () => {
@@ -8,22 +9,23 @@ const Projects = () => {
   const portfolios = [
     {
       id: 1,
-      src: mazePic,
-      title: "Binary Haskell Maze Solver",
+      src: indiebuffPic,
+      title: "IndieBuff - Empowering Game Developers",
       description:
-        "A maze solving algorithm implemented in Haskell using binary files. This project demonstrates functional programming concepts and pathfinding algorithms, solving complex mazes.",
-      tech: "Haskell, Algorithms, Functional Programming",
-      demo: null,
-      code: "https://github.com/Ghassan-Awdali/Haskell-Maze",
+        "Co-founded IndieBuff, a platform connecting indie game studios with players. Led the development of multiple landing pages and contributed to core software development, creating an innovative solution for game discovery.",
+      tech: "React, Next.js, Tailwind CSS, Node.js, Lua, C#, C++",
+      demo: "https://www.indiebuff.ai/",
+      code: null,
     },
     {
       id: 2,
-      src: tbd,
-      title: "Coming Soon",
-      description: "More projects coming soon!",
-      tech: "",
+      src: mazePic,
+      title: "Haskell Maze Generator & Solver",
+      description:
+        "A maze generation and solving algorithm implemented in Haskell using binary files. This project demonstrates functional programming concepts and pathfinding algorithms, creating and solving complex mazes.",
+      tech: "Haskell, Algorithms, Functional Programming",
       demo: null,
-      code: null,
+      code: "https://github.com/Ghassan-Awdali/Haskell-Maze",
     },
     {
       id: 3,
@@ -66,11 +68,13 @@ const Projects = () => {
                   isDarkMode ? "shadow-gray-600" : "shadow-gray-400"
                 }`}
               >
-                <img
-                  src={src}
-                  alt={title}
-                  className="rounded-md duration-200 hover:scale-105"
-                />
+                <div className="flex flex-col items-center">
+                  <img
+                    src={src}
+                    alt={title}
+                    className="rounded-md duration-200 hover:scale-105 w-full h-48 object-contain my-4"
+                  />
+                </div>
                 <div className="p-4">
                   <h3 className="text-xl font-bold mb-2">{title}</h3>
                   <p
@@ -96,11 +100,9 @@ const Projects = () => {
                         href={demo}
                         target="_blank"
                         rel="noreferrer"
-                        className={`w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105 text-center ${
-                          isDarkMode ? "text-white" : "text-gray-900"
-                        }`}
+                        className="w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105 text-center bg-gradient-to-r from-purple-500 to-pink-500 rounded-md text-white"
                       >
-                        Demo
+                        Live Demo
                       </a>
                     )}
                     {code && (
@@ -108,9 +110,7 @@ const Projects = () => {
                         href={code}
                         target="_blank"
                         rel="noreferrer"
-                        className={`w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105 text-center ${
-                          isDarkMode ? "text-white" : "text-gray-900"
-                        } bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md text-white`}
+                        className="w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105 text-center bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md text-white"
                       >
                         Code
                       </a>
