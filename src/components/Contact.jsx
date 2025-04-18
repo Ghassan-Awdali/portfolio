@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 
 const Contact = () => {
   const { isDarkMode } = useTheme();
+  const [formStatus, setFormStatus] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    try {
+      const response = await fetch(
+        "https://getform.io/f/61c99527-2b15-42cf-9b55-ad37d2f7daa6",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        setFormStatus("Message sent successfully!");
+        e.target.reset();
+        setTimeout(() => setFormStatus(""), 3000); // Clear message after 3 seconds
+      } else {
+        setFormStatus("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      setFormStatus("Error sending message. Please try again.");
+    }
+  };
 
   return (
     <div
@@ -27,13 +56,13 @@ const Contact = () => {
 
         <div className="sm:flex sm:justify-center sm:items-center flex justify-center items-center">
           <form
-            action="https://getform.io/f/61c99527-2b15-42cf-9b55-ad37d2f7daa6"
-            method="POST"
+            onSubmit={handleSubmit}
             className="flex flex-col w-full md:w-1/2"
           >
             <input
               type="text"
               name="name"
+              required
               placeholder="Enter your name"
               className={`p-2 border-2 rounded-md focus:outline-none ${
                 isDarkMode
@@ -42,8 +71,9 @@ const Contact = () => {
               }`}
             />
             <input
-              type="text"
+              type="email"
               name="email"
+              required
               placeholder="Enter your email"
               className={`my-4 p-2 border-2 rounded-md focus:outline-none ${
                 isDarkMode
@@ -53,6 +83,7 @@ const Contact = () => {
             />
             <textarea
               name="message"
+              required
               placeholder="Enter your message"
               rows="10"
               className={`p-2 border-2 rounded-md focus:outline-none ${
@@ -62,9 +93,24 @@ const Contact = () => {
               }`}
             ></textarea>
 
-            <button className="text-white bg-gradient-to-b from-cyan-500 to-blue-500 px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300">
+            <button
+              type="submit"
+              className="text-white bg-gradient-to-b from-cyan-500 to-blue-500 px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300"
+            >
               Connect!
             </button>
+
+            {formStatus && (
+              <p
+                className={`text-center mb-4 ${
+                  formStatus.includes("successfully")
+                    ? "text-green-500"
+                    : "text-red-500"
+                }`}
+              >
+                {formStatus}
+              </p>
+            )}
           </form>
         </div>
       </div>
