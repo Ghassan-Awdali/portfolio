@@ -18,11 +18,11 @@ const Home = () => {
       <div className="max-w-screen-lg mx-auto flex flex-col items-center justify-center h-full px-4 md:flex-row">
         <div className="flex flex-col justify-center h-full">
           <h2
-            className={`text-4xl sm:text-5xl md:text-7xl font-bold ${
+            className={`text-4xl sm:text-5xl md:text-6xl font-bold ${
               isDarkMode ? "text-white" : "text-gray-900"
             }`}
           >
-            I am a 24 year old Software Engineer
+            Hiyo my name is Ghassan Awdali
           </h2>
 
           <p
@@ -30,7 +30,8 @@ const Home = () => {
               isDarkMode ? "text-gray-400" : "text-gray-600"
             } py-4 max-w-2xl`}
           >
-            I strive to be an innovator and educator through my work, creating
+            I recently graduated from Dalhousie University , Summer 2024. I
+            strive to be an innovator and educator through my work, creating
             meaningful solutions while sharing knowledge with others.
           </p>
 
