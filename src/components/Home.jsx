@@ -22,7 +22,7 @@ const Home = () => {
               isDarkMode ? "text-white" : "text-gray-900"
             }`}
           >
-            Hiyo my name is Ghassan Awdali
+            Hiyo my name is Ghassan
           </h2>
 
           <p
