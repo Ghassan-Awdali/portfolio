@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
+import { motion, useInView } from "framer-motion";
 import mazePic from "../assets/maze.png";
 import indiebuffPic from "../assets/indiebuff.png";
 import tbd from "../assets/tbd.png";
 
 const Projects = () => {
   const { isDarkMode } = useTheme();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
   const portfolios = [
     {
       id: 1,
@@ -41,14 +67,46 @@ const Projects = () => {
   return (
     <div
       name="projects"
-      className={`flex w-full md:h-screen sm:pt-8 ${
+      className={`flex w-full min-h-screen py-20 md:py-24 relative overflow-hidden ${
         isDarkMode
           ? "bg-gradient-to-b from-black to-gray-800 text-white"
           : "bg-gradient-to-b from-white to-gray-200 text-gray-900"
       }`}
+      ref={ref}
     >
-      <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full">
-        <div className="pb-8">
+      {/* Animated background particles */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className={`absolute w-1 h-1 rounded-full ${
+              isDarkMode ? "bg-cyan-400" : "bg-blue-500"
+            } opacity-30`}
+            initial={{
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+            }}
+            animate={{
+              y: [null, Math.random() * window.innerHeight],
+              x: [null, Math.random() * window.innerWidth],
+              opacity: [0.3, 0.6, 0.3],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full relative z-10">
+        <motion.div
+          className="pb-12 md:pb-16"
+          initial={{ opacity: 0, x: -50 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
           <p
             className={`text-4xl font-bold inline border-b-4 ${
               isDarkMode
@@ -58,37 +116,56 @@ const Projects = () => {
           >
             Projects
           </p>
-          <p className={`py-6 ${isDarkMode ? "text-white" : "text-gray-900"}`}>
+          <p
+            className={`py-6 text-lg ${
+              isDarkMode ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
             Check out some of my work
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 px-12 sm:px-0">
+        <motion.div
+          className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {portfolios.map(
             ({ id, src, title, description, tech, demo, code }) => (
-              <div
+              <motion.div
                 key={id}
-                className={`shadow-md rounded-lg ${
-                  isDarkMode ? "shadow-gray-600" : "shadow-gray-400"
+                variants={cardVariants}
+                whileHover={{
+                  scale: 1.05,
+                  rotateY: 5,
+                  transition: { duration: 0.3 },
+                }}
+                className={`shadow-lg rounded-lg overflow-hidden backdrop-blur-sm ${
+                  isDarkMode
+                    ? "bg-gray-800/50 shadow-gray-600/50 border border-gray-700/50"
+                    : "bg-white/80 shadow-gray-400/50 border border-gray-200/50"
                 }`}
               >
-                <div className="flex flex-col items-center">
-                  <img
+                <div className="flex flex-col items-center overflow-hidden">
+                  <motion.img
                     src={src}
                     alt={title}
-                    className="rounded-md duration-200 hover:scale-105 w-full h-48 object-contain my-4"
+                    className="rounded-md w-full h-48 object-contain my-4"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
                   />
                 </div>
-                <div className="p-4">
+                <div className="p-5 md:p-6">
                   <h3
-                    className={`text-xl font-bold mb-2 ${
+                    className={`text-xl font-bold mb-3 ${
                       isDarkMode ? "text-white" : "text-gray-900"
                     }`}
                   >
                     {title}
                   </h3>
                   <p
-                    className={`text-sm mb-3 ${
+                    className={`text-sm mb-4 leading-relaxed ${
                       isDarkMode ? "text-gray-300" : "text-gray-600"
                     }`}
                   >
@@ -96,7 +173,7 @@ const Projects = () => {
                   </p>
                   {tech && (
                     <p
-                      className={`text-xs mb-4 ${
+                      className={`text-xs mb-5 ${
                         isDarkMode ? "text-gray-400" : "text-gray-500"
                       }`}
                     >
@@ -104,33 +181,37 @@ const Projects = () => {
                       {tech}
                     </p>
                   )}
-                  <div className="flex items-center justify-center">
+                  <div className="flex items-center justify-center gap-3">
                     {demo && (
-                      <a
+                      <motion.a
                         href={demo}
                         target="_blank"
                         rel="noreferrer"
-                        className="w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105 text-center bg-gradient-to-r from-purple-500 to-pink-500 rounded-md text-white"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex-1 px-4 py-2.5 text-center bg-gradient-to-r from-purple-500 to-pink-500 rounded-md text-white shadow-lg shadow-purple-500/50 text-sm md:text-base"
                       >
                         Live Demo
-                      </a>
+                      </motion.a>
                     )}
                     {code && (
-                      <a
+                      <motion.a
                         href={code}
                         target="_blank"
                         rel="noreferrer"
-                        className="w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105 text-center bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md text-white"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex-1 px-4 py-2.5 text-center bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md text-white shadow-lg shadow-cyan-500/50 text-sm md:text-base"
                       >
                         Code
-                      </a>
+                      </motion.a>
                     )}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )
           )}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
