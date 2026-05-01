@@ -5,12 +5,14 @@ import About from "./components/About";
 import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
+import Particles from "./components/Particles";
 import { ThemeProvider } from "./context/ThemeContext";
 
 function App() {
   return (
     <ThemeProvider>
       <div>
+        <Particles />
         <NavBar />
         <Home />
         <About />
