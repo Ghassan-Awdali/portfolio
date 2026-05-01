@@ -25,7 +25,7 @@ function getLayout(finalTopPx, finalRightPx) {
   };
 }
 
-function useCelestialIntro(reduceMotion, layout, controls) {
+function useCelestialIntro(reduceMotion, layout, controls, onIntroComplete) {
   useEffect(() => {
     if (reduceMotion) {
       void controls.set({
@@ -33,6 +33,7 @@ function useCelestialIntro(reduceMotion, layout, controls) {
         right: layout.endRight,
         rotate: 0,
       });
+      onIntroComplete?.();
       return;
     }
 
@@ -61,22 +62,23 @@ function useCelestialIntro(reduceMotion, layout, controls) {
         rotate: 720,
         transition: { duration: 1.15, ease: [0.34, 1, 0.36, 1] },
       });
+      if (active) onIntroComplete?.();
     };
 
     void run();
     return () => {
       active = false;
     };
-  }, [controls, reduceMotion, layout]);
+  }, [controls, reduceMotion, layout, onIntroComplete]);
 }
 
-export function NightMoon({ reduceMotion }) {
+export function NightMoon({ reduceMotion, onIntroComplete }) {
   const uid = useId().replace(/:/g, "");
   const finalTop = 76;
   const finalRight = 14;
   const layout = useMemo(() => getLayout(finalTop, finalRight), [finalTop, finalRight]);
   const controls = useAnimationControls();
-  useCelestialIntro(reduceMotion, layout, controls);
+  useCelestialIntro(reduceMotion, layout, controls, onIntroComplete);
 
   const { scrollYProgress } = useScroll();
   const scrollOpacity = useTransform(scrollYProgress, [0, 0.12, 0.22], [1, 0.4, 0]);
@@ -162,13 +164,13 @@ export function NightMoon({ reduceMotion }) {
 
 const SUN_RAY_COUNT = 20;
 
-export function DaySunOrb({ reduceMotion }) {
+export function DaySunOrb({ reduceMotion, onIntroComplete }) {
   const uid = useId().replace(/:/g, "");
   const finalTop = 72;
   const finalRight = 10;
   const layout = useMemo(() => getLayout(finalTop, finalRight), [finalTop, finalRight]);
   const controls = useAnimationControls();
-  useCelestialIntro(reduceMotion, layout, controls);
+  useCelestialIntro(reduceMotion, layout, controls, onIntroComplete);
 
   const { scrollYProgress } = useScroll();
   const scrollOpacity = useTransform(scrollYProgress, [0, 0.12, 0.22], [1, 0.4, 0]);
