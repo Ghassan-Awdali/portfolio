@@ -8,77 +8,72 @@ const Socials = () => {
   const links = [
     {
       id: 1,
-      child: (
-        <>
-          LinkedIn <FaLinkedin size={30} />
-        </>
-      ),
+      label: "LinkedIn",
+      icon: <FaLinkedin size={22} className="shrink-0" />,
       href: "https://linkedin.com/in/ghassan-awdali",
       style: "rounded-tr-md",
     },
-
     {
       id: 2,
-      child: (
-        <>
-          GitHub <FaGithub size={30} />
-        </>
-      ),
+      label: "GitHub",
+      icon: <FaGithub size={22} className="shrink-0" />,
       href: "https://github.com/ghassan-awdali",
     },
-
     {
       id: 3,
-      child: (
-        <>
-          Email <HiOutlineMail size={30} />
-        </>
-      ),
+      label: "Email",
+      icon: <HiOutlineMail size={24} className="shrink-0" />,
       href: "mailto:awdalig@gmail.com",
     },
-
     {
       id: 4,
-      child: (
-        <>
-          Resume <BsFillPersonLinesFill size={30} />
-        </>
-      ),
+      label: "Resume",
+      icon: <BsFillPersonLinesFill size={22} className="shrink-0" />,
       href: "/resume.pdf",
       style: "rounded-br-md",
       download: true,
     },
   ];
 
+  /** Negative x tucks the strip left; larger magnitude = more hidden. */
+  const peekOffset = 10;
+  /** On hover, move toward positive x (right) so icons clearly slide out. */
+  const hoverRevealPx = 18;
+
   return (
-    <div className="hidden lg:flex flex-col top-[35%] left-0 fixed z-30">
-      <ul>
-        {links.map(({ id, child, href, style, download }, index) => (
+    <div className="pointer-events-none fixed left-0 top-[35%] z-[45] hidden lg:flex flex-col">
+      <ul className="m-0 list-none p-0">
+        {links.map(({ id, label, icon, href, style, download }, index) => (
           <motion.li
             key={id}
             className={
-              "flex justify-between items-center w-40 h-14 px-4 ml-[-100px] hover:ml-[-10px] hover:rounded-md duration-300 bg-gradient-to-r from-gray-600 to-gray-500 backdrop-blur-sm" +
-              " " +
-              style
+              "pointer-events-auto flex h-11 w-11 items-center justify-center border-r border-white/10 shadow-md backdrop-blur-sm " +
+              "bg-gradient-to-r from-slate-700/95 to-slate-600/95 " +
+              (style ?? "")
             }
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: -100, opacity: 1 }}
-            whileHover={{ x: -10, scale: 1.05 }}
+            initial={{ x: -peekOffset, opacity: 0 }}
+            animate={{ x: -peekOffset, opacity: 1 }}
+            whileHover={{
+              x: -peekOffset + hoverRevealPx,
+              transition: { type: "spring", stiffness: 520, damping: 26, delay: 0 },
+            }}
             transition={{
-              delay: index * 0.1,
+              delay: index * 0.08,
               type: "spring",
-              stiffness: 300,
-              damping: 20,
+              stiffness: 420,
+              damping: 30,
             }}
           >
             <a
               href={href}
-              className="flex justify-between items-center w-full text-white"
+              title={label}
+              aria-label={label}
+              className="flex h-full w-full items-center justify-center text-white"
               download={download}
-              target="_blank"
-              rel="noreferrer"
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noreferrer" : undefined}
             >
-              {child}
+              {icon}
             </a>
           </motion.li>
         ))}

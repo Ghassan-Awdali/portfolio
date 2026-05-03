@@ -67,40 +67,12 @@ const Projects = () => {
   return (
     <div
       name="projects"
-      className={`flex w-full min-h-screen py-20 md:py-24 relative overflow-hidden ${
-        isDarkMode
-          ? "bg-gradient-to-b from-black to-gray-800 text-white"
-          : "bg-gradient-to-b from-white to-gray-200 text-gray-900"
+      className={`relative z-10 flex min-h-screen w-full overflow-hidden py-20 md:py-24 ${
+        isDarkMode ? "bg-transparent text-white" : "bg-transparent text-gray-900"
       }`}
       ref={ref}
     >
-      {/* Animated background particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className={`absolute w-1 h-1 rounded-full ${
-              isDarkMode ? "bg-cyan-400" : "bg-blue-500"
-            } opacity-30`}
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-            }}
-            animate={{
-              y: [null, Math.random() * window.innerHeight],
-              x: [null, Math.random() * window.innerWidth],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full relative z-10">
+      <div className="relative z-10 mx-auto flex w-full max-w-screen-lg flex-col justify-center p-4">
         <motion.div
           className="pb-12 md:pb-16"
           initial={{ opacity: 0, x: -50 }}

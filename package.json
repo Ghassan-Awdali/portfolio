@@ -9,6 +9,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
+    "moon:displacement": "node scripts/build-moon-displacement.mjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -16,6 +17,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@react-three/fiber": "^8.15.19",
+    "@react-three/postprocessing": "^2.16.2",
     "framer-motion": "^12.26.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -25,12 +28,14 @@
     "react-scripts": "^5.0.1",
     "react-scroll": "^1.9.0",
     "redux": "^5.0.1",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "three": "^0.170.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "gh-pages": "^6.3.0",
     "react-scripts": "^5.0.1",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.1"
   },
   "browserslist": {
